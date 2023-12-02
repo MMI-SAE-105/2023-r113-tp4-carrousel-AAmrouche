@@ -11,6 +11,7 @@
 
 * {
 box-sizing: border-box;
+background-color: #95CBB9;
 }
 img {
     max-width: 100%;
@@ -30,7 +31,7 @@ img {
     scroll-snap-align: start;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 40vh;
     text-align: center;
 }
 .carrousel_ecran figure {
@@ -38,27 +39,29 @@ img {
 }
 .carrousel {
   position: relative;
+
+  
 }
 
 .carrousel_btn {
   position: absolute;
   top: 50%;
   top: calc(
-    min(500px, 100vw) / 16 * 9 / 2 + 1rem
+    min(220px, 100vw) / 16 * 9 / 2 + 1rem
   ); /* centre verticalement ~50% vertical */
   transform: translateY(-50%); /* methode du point mort */
   width: 2rem;
   height: 2rem;
-  background: rgba(127, 141, 221, 0.5);
+  background: #e59866;
   border-radius: 50%;
   border: none;
   display: grid;
   place-content: center;
-  color: #fff;
-  width: 60px;
-  height: 50px;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
     border-radius: 20px;
-    font-weight: bold
+    font-weight: bold;
 }
 
 .carrousel_btn-avant {
@@ -69,18 +72,38 @@ img {
   right: 0;
 }
 .caroussel_liste-liens {
-    display: flex; /* aligne horizontalement les enfants */
-    justify-content: center; /* centre horizontalement les enfants */
-    margin: 0; /* enlève les marges par défaut */
-    padding: 0; /* enlève les padding par défaut */
-    list-style: none; /* enlève les puces par défaut */
-    gap: 20px; /* espace entre les enfants */
-    
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    list-style: none; 
+}
+
+.caroussel_liste-liens a {
+    display: flex;
+    margin: 0px 1;
+    padding: 2px; /* adjust as needed */
+    background-color: #fff; /* white background */
+    color: #000; /* black text */
+    text-decoration: none;
+    border-radius: 10px; /* adjust as needed */
+    transition: background-color 0.3s ease; /* add a transition effect when the button is hovered over */
+}
+
+.caroussel_liste-liens a:hover {
+    background-color: #e59866; /* darken the button when hovered over */
 }
 .actif {
-    color: #ff0000; /* change text color */
+    color: #e59866; /* change text color */
     font-weight: bold;
+    justify-content: center;
+
 }
+
+
+
+
+
+
 </style>
 
 <body>
@@ -88,11 +111,11 @@ img {
     <div class="carrousel" x-data="{hrefCourant: '#ecran-1',}">
         <button  @click="p=$refs.parent;p.scrollLeft-=p.clientWidth" 
             class="carrousel_btn carrousel_btn-avant" 
-            aria-label="slide précedant"><
+            aria-label="slide précedant">❮
         </button>
         <button @click="p=$refs.parent;p.scrollLeft+=p.clientWidth"
          class="carrousel_btn carrousel_btn-apres" 
-         aria-label="slide suivant">>
+         aria-label="slide suivant">❯
         </button>
         <div class="carrousel_parent-ecrans" x-ref="parent" 
         @scroll.debounce.250ms.passive="
@@ -133,7 +156,7 @@ img {
             </div>
         </div>
         <ul class="caroussel_liste-liens">
-            <li><a href="#ecran-1" :class="{actif:hrefCourant==='#ecran-1'}" class="caroussel_lien">Ecran 1</a></li>
+            <li class="caroussel_lien"><a href="#ecran-1" :class="{actif:hrefCourant==='#ecran-1'}" class="caroussel_lien">Ecran 1</a></li>
             <li><a href="#ecran-2" :class="{actif:hrefCourant==='#ecran-2'}"class="caroussel_lien">Ecran 2</a></li>
             <li><a href="#ecran-3" :class="{actif:hrefCourant==='#ecran-3'}"class="caroussel_lien">Ecran 3</a></li>
             <li><a href="#ecran-4" :class="{actif:hrefCourant==='#ecran-4'}"class="caroussel_lien">Ecran 4</a></li>
